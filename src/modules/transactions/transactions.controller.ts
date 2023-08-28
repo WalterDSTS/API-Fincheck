@@ -12,7 +12,6 @@ import {
   HttpCode,
   Query,
   ParseIntPipe,
-  ParseEnumPipe,
 } from '@nestjs/common';
 import { TransactionsService } from './services/transactions.service';
 import { CreateTransactionDto } from './dto/create-transaction.dto';

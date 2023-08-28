@@ -10,8 +10,23 @@ export class BankAccountsRepository {
     return this.prismaService.bankAccount.create(createDto);
   }
 
-  findMany(findManyDto: Prisma.BankAccountFindManyArgs) {
-    return this.prismaService.bankAccount.findMany(findManyDto);
+  findMany(userId: string) {
+    return this.prismaService.bankAccount.findMany({
+      where: { userId },
+      select: {
+        id: true,
+        name: true,
+        initialBalance: true,
+        color: true,
+        type: true,
+        transactions: {
+          select: {
+            type: true,
+            value: true,
+          },
+        },
+      },
+    });
   }
 
   findFirst(findFirstDto: Prisma.BankAccountFindFirstArgs) {
